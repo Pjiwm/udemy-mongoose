@@ -10,9 +10,6 @@ before(() => {
 })
 
 
-beforeEach((done) => {
-    mongoose.connection.collections.users.drop(() => {
-        console.log('Dropped collection users')
-        done()
-    })
+beforeEach(async () => {
+   await mongoose.connection.collections.users.drop()
 })

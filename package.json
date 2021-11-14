@@ -5,7 +5,7 @@
     "scripts": {
         "start": "node app",
         "dev": "node app",
-        "test": "node test/test.helper.js"
+        "test": "mocha"
     },
     "dependencies": {
         "express": "^4.17.1",

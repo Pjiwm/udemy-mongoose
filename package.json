@@ -5,7 +5,7 @@
     "scripts": {
         "start": "node app",
         "dev": "node app",
-        "test": "mocha"
+        "test": "nodemon --exec 'mocha -R min'"
     },
     "dependencies": {
         "express": "^4.17.1",

@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  node:
+    container_name: mongo_node
+    volumes: 
+       - .:/usr/src/app
+    # restart: always
+    build: .
+    command: npm run dev
+    ports: 
+      - 80:3000
+    links:
+      - 'mongo'
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data/db:/data/db

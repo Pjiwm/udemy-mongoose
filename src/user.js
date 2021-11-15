@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const schema = mongoose.Schema
+const postSchema = require('./post')
 
-const userSchema = new Schema({
+const userSchema = new schema({
     name: {
         type: String,
         validate: {
@@ -11,6 +12,7 @@ const userSchema = new Schema({
         required: [true, 'Name is required.'],
     },
     postCount: Number,
+    posts: [postSchema]
 })
 const user = mongoose.model('user', userSchema)
 module.exports = user

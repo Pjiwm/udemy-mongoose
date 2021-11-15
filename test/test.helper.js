@@ -9,7 +9,10 @@ before(() => {
         .on('error', (error) => { console.warn('Warning', error) })
 })
 
+// commented out beforeach for droppin users collection.
+// Some tests don't actually insert a new user to the database, 
+// so if we drop it while there's no collection yet we get an error.
 
-beforeEach(async () => {
-   await mongoose.connection.collections.users.drop()
-})
+// beforeEach(async () => {
+//    await mongoose.connection.collections.users.drop()
+// })

@@ -1,9 +1,12 @@
 const assert = require('assert')
 const user = require('../src/user')
+const mongoose = require('mongoose')
 
 describe('Updating recors', () => {
     let joe
+
     beforeEach(async () => {
+        await mongoose.connection.collections.users.drop()
         joe = new user({ name: 'Joe', postCount: 0 })
         await joe.save()
     })

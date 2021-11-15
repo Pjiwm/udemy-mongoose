@@ -17,7 +17,8 @@ describe('deleting a user', () => {
     }
 
     it('model instance remove', async () => {
-        await joe.remove()
+        // await joe.remove()
+        await joe.delete()
         await assertUserNull()
     })
 
@@ -29,12 +30,14 @@ describe('deleting a user', () => {
     })
 
     it('class method findAndRemove', async () => {
-        await user.findOneAndRemove({ name: 'Joe' })
+        // await user.findOneAndRemove({ name: 'Joe' })
+        await user.findOneAndDelete({ name: 'Joe' })
         await assertUserNull()
     })
 
     it('class method findByIdAndRemove', async () => {
-        await user.findByIdAndRemove(joe._id)
+        // await user.findByIdAndRemove(joe._id)
+        await user.findByIdAndDelete(joe._id)
         await assertUserNull()
 
     })    

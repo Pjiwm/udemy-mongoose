@@ -44,6 +44,6 @@ describe('Subdocuments', () => {
         await joe.save()
         // we retrieve again...
         joe = await user.findOne({ name: 'Joe' })
-        assert(joe.posts.length === 1)
+        assert(joe.posts.length === 0)
     })
 })

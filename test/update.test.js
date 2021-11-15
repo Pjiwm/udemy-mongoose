@@ -47,7 +47,7 @@ describe('Updating recors', () => {
         await assertName()
     })
 
-    it('A user can have their postCount incremented by 1', async () => {
+    xit('A user can have their postCount incremented by 1', async () => {
         await user.updateMany({ name: 'Joe' }, { $inc: { postCount: 10 } })
         const foundUser = await user.findOne({ name: 'Joe'})
         assert(foundUser.postCount === 10)

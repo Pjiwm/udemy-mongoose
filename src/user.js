@@ -11,8 +11,12 @@ const userSchema = new schema({
         },
         required: [true, 'Name is required.'],
     },
-    postCount: Number,
     posts: [postSchema]
 })
+
+userSchema.virtual('postCount').get(function () {
+    return this.posts.length
+})
+
 const user = mongoose.model('user', userSchema)
 module.exports = user

@@ -1,7 +1,13 @@
 const assert = require('assert')
 const user = require('../src/user')
+const mongoose = require('mongoose')
 
 describe('Virtual types', () => {
+
+    beforeEach(async () => {
+        await mongoose.connection.collections.users.drop()
+    })
+
     it('postCount returns number of posts', async () => {
         let joe = new user({
             name: 'Joe',

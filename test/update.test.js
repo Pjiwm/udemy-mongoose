@@ -7,7 +7,7 @@ describe('Updating recors', () => {
 
     beforeEach(async () => {
         await mongoose.connection.collections.users.drop()
-        joe = new user({ name: 'Joe', postCount: 0 })
+        joe = new user({ name: 'Joe', likes: 0 })
         await joe.save()
     })
     async function assertName() {
@@ -47,10 +47,10 @@ describe('Updating recors', () => {
         await assertName()
     })
 
-    xit('A user can have their postCount incremented by 1', async () => {
-        await user.updateMany({ name: 'Joe' }, { $inc: { postCount: 10 } })
+    it('A user can have their likes incremented by 10', async () => {
+        await user.updateMany({ name: 'Joe' }, { $inc: { likes: 10 } })
         const foundUser = await user.findOne({ name: 'Joe'})
-        assert(foundUser.postCount === 10)
+        assert(foundUser.likes === 10)
     })
 })
 

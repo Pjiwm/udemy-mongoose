@@ -11,10 +11,11 @@ const userSchema = new schema({
         },
         required: [true, 'Name is required.'],
     },
-    posts: [postSchema]
+    posts: [postSchema],
+    likes: Number
 })
 
-userSchema.virtual('postCount').get(function () {
+userSchema.virtual('postCount').get(function() {
     return this.posts.length
 })
 

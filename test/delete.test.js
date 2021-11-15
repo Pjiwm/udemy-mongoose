@@ -16,26 +16,24 @@ describe('deleting a user', () => {
 
     it('model instance remove', async () => {
         await joe.remove()
-        assertUserNull()
+        await assertUserNull()
     })
 
     it('class method remove', async () => {
         // old stuff LOL
         // await user.remove({ name: 'Joe' })
         await user.deleteMany({ name: 'Joe' })
-        assertUserNull()
+        await assertUserNull()
     })
 
     it('class method findAndRemove', async () => {
         await user.findOneAndRemove({ name: 'Joe' })
-        assertUserNull()
+        await assertUserNull()
     })
 
     it('class method findByIdAndRemove', async () => {
         await user.findByIdAndRemove(joe._id)
-        assertUserNull()
+        await assertUserNull()
 
-    })
-
-    
+    })    
 })

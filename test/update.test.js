@@ -4,7 +4,7 @@ const user = require('../src/user')
 describe('Updating recors', () => {
     let joe
     beforeEach(async () => {
-        joe = new user({ name: 'Joe' })
+        joe = new user({ name: 'Joe', postCount: 0 })
         await joe.save()
     })
     async function assertName() {
@@ -13,7 +13,7 @@ describe('Updating recors', () => {
         assert(alexes[0].name != 'Joe')
         assert(alexes[0].name === 'Alex')
     }
-    
+
     it('instance set and save', async () => {
         joe.set('name', 'Alex')
         await joe.save()
@@ -29,20 +29,25 @@ describe('Updating recors', () => {
 
     it('A model class can update', async () => {
         // old stuff LOL
-        // await joe.update({ name: 'Alex' }, {name: 'Joe'})
-        await user.updateMany({ name: 'Joe'}, { name: 'Alex' })
+        // await joe.update({ name: 'Joe' }, {name: 'Alex'})
+        await user.updateMany({ name: 'Joe' }, { name: 'Alex' })
         await assertName()
     })
 
     it('A model class can update one record', async () => {
-        await user.findOneAndUpdate({ name: 'Joe'}, { name: 'Alex' })
+        await user.findOneAndUpdate({ name: 'Joe' }, { name: 'Alex' })
         await assertName()
     })
 
     it('A model class can find a record with an Id and update', async () => {
         await user.findByIdAndUpdate(joe._id, { name: 'Alex' })
         await assertName()
-        
+    })
+
+    it('A user can have their postCount incremented by 1', async () => {
+        await user.updateMany({ name: 'Joe' }, { $inc: { postCount: 10 } })
+        const foundUser = await user.findOne({ name: 'Joe'})
+        assert(foundUser.postCount === 10)
     })
 })
 

@@ -26,7 +26,6 @@ userSchema.virtual('postCount').get(function() {
 userSchema.pre('remove', async function() { 
     const blogPost = mongoose.model('blogPost')
     await blogPost.remove({_id: {$in: this.blogPosts}})
-    console.log('Deleted blog posts')
 })
 
 const user = mongoose.model('user', userSchema)

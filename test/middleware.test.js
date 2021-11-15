@@ -16,14 +16,12 @@ describe('Middleware', () => {
 
         joe.blogPosts.push(newBlogPost)
 
-        await joe.save()
-        await newBlogPost.save()
+        await joe.save(), newBlogPost.save()
     })
 
     it('users clean up blogposts on delete', async () => {
         await joe.delete()
         const count = await blogPost.count()
-        console.log(count)
         assert(count === 0)
     })
 })

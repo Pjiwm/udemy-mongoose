@@ -9,9 +9,7 @@ describe('Associations', () => {
     let joe, newBlogPost, newComment
     beforeEach(async () => {
         const { users, blogposts, comments } = mongoose.connection.collections
-        await users.drop()
-        await comments.drop()
-        await blogposts.drop()
+        await users.drop(),comments.drop(), blogposts.drop()
 
         joe = new user({ name: 'Joe' })
         newBlogPost = new blogPost({ title: 'JS is Great', content: 'Yep it really is' })

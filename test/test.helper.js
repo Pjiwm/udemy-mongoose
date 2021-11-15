@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const user = require('../src/user')
 
 mongoose.Promise = global.Promise
 
